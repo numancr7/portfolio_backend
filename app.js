@@ -15,15 +15,17 @@ import projectRoute from "./routes/projectRoute.js";
 const app = express();
 dotenv.config({ path: "./config/config.env" });
 
-app.use(
-  cors({
-
-    exposedHeaders: ['set-cookie', 'Authorization'],
-    origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: [
+    process.env.PORTFOLIO_URL, 
+    process.env.DASHBOARD_URL
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['set-cookie', 'Authorization'],
+  credentials: true,
+  maxAge: 86400 // Optional: cache preflight for 24h
+}));
 
 app.use(cookieParser());
 app.use(express.json());
