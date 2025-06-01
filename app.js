@@ -16,15 +16,8 @@ const app = express();
 dotenv.config({ path: "./config/config.env" });
 
 app.use(cors({
-  origin: [
-    process.env.PORTFOLIO_URL, 
-    process.env.DASHBOARD_URL
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  exposedHeaders: ['set-cookie', 'Authorization'],
+  origin:true,
   credentials: true,
-  maxAge: 86400 // Optional: cache preflight for 24h
 }));
 
 app.use(cookieParser());
