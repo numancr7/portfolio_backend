@@ -22,6 +22,7 @@ app.use(cors({
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true,
+  headers: { Authorization: `Bearer ${token}` }
 }));
 
 app.use(cookieParser());
