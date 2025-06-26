@@ -17,8 +17,8 @@ dotenv.config({ path: "./config/config.env" });
 
 app.use(cors({
   origin: [
-    "http://localhost:5173", // dashboard dev
-    "http://localhost:3000", // portfolio dev
+    "https://dashboard-sandy-tau-67.vercel.app", // dashboard dev
+    "https://portfolio-backend-rho-three.vercel.app", // portfolio dev
     process.env.PORTFOLIO_URL, 
     process.env.DASHBOARD_URL
   ],
