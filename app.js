@@ -17,12 +17,15 @@ dotenv.config({ path: "./config/config.env" });
 
 app.use(cors({
   origin: [
+    "http://localhost:5173", // dashboard dev
+    "http://localhost:3000", // portfolio dev
     process.env.PORTFOLIO_URL, 
     process.env.DASHBOARD_URL
   ],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true,
-  headers: { Authorization: `Bearer ${token}` }
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  exposedHeaders: ["Set-Cookie"]
 }));
 
 app.use(cookieParser());

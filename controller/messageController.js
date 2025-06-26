@@ -32,7 +32,7 @@ export const deleteMessage = catchAsyncErrors(async (req, res, next) => {
 
   export const getAllMessages = catchAsyncErrors(async (req, res, next) => {
     const messages = await Message.find();
-    res.status(201).json({
+    res.status(200).json({
       success: true,
       messages,
     });

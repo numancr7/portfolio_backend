@@ -28,7 +28,7 @@ export const register = catchAsyncErrors(async (req, res, next) => {
   // POSTING RESUME
   const cloudinaryResponseForResume = await cloudinary.uploader.upload(
     resume.tempFilePath,
-    { folder: "PORTFOLIO RESUME" }
+    { folder: "PORTFOLIO RESUME", resource_type: "raw" }
   );
   if (!cloudinaryResponseForResume || cloudinaryResponseForResume.error) {
     console.error(
@@ -65,12 +65,12 @@ export const register = catchAsyncErrors(async (req, res, next) => {
     facebookURL,
     linkedInURL,
     avatar: {
-      public_id: cloudinaryResponseForAvatar.public_id, // Use the correct variable
-      url: cloudinaryResponseForAvatar.secure_url, // Use the correct variable
+      public_id: cloudinaryResponseForAvatar.public_id,
+      url: cloudinaryResponseForAvatar.secure_url,
     },
     resume: {
-      public_id: cloudinaryResponseForResume.public_id, // Use the correct variable
-      url: cloudinaryResponseForResume.secure_url, // Use the correct variable
+      public_id: cloudinaryResponseForResume.public_id,
+      url: cloudinaryResponseForResume.secure_url,
     },
   });
 
@@ -153,6 +153,7 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
     }
     const newResume = await cloudinary.uploader.upload(resume.tempFilePath, {
       folder: "PORTFOLIO RESUME",
+      resource_type: "raw"
     });
     newUserData.resume = {
       public_id: newResume.public_id,
